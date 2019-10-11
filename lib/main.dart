@@ -26,13 +26,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  Widget build(BuildContext context) => ListView(
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: (Iterable<int>.generate(15).map((int i) => ListTile(
-                title: Text("Op $i"),
-              ))),
-          color: Colors.blue,
-        ).toList(),
+  Widget build(BuildContext context) => ListView.builder(
+        itemBuilder: (BuildContext context, int i) => ListTile(
+          title: Text("Op $i"),
+        ),
+        itemCount: 15,
       );
 }
