@@ -27,39 +27,32 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-enum Options { YES, NO }
-
 class _MyAppState extends State<MyApp> {
-  String _value;
+  Future _showAlter(String str) async {
+    String s = await showDialog(
+        context: context,
+        builder: (BuildContext ctx) => AlertDialog(
+              title: Text(str),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("Ok"),
+                  onPressed: () => Navigator.pop(ctx, "This is my return"),
+                ),
+              ],
+            ));
 
-  Future _event() async {
-    Options op = await showDialog(
-      context: context,
-      builder: (_) => SimpleDialog(
-        title: Text("Dialog"),
-        children: <Widget>[
-          SimpleDialogOption(
-            child: Text("Ok"),
-            onPressed: () => Navigator.pop(context, Options.YES),
-          ),
-          SimpleDialogOption(
-            child: Text("Cancel"),
-            onPressed: () => Navigator.pop(context, Options.NO),
-          )
-        ],
-      ),
-    );
+    debugPrint(s);
 
-    setState(() => _value = op.toString());
+    return s;
   }
 
   @override
   Widget build(BuildContext context) => Center(
         child: Column(
           children: <Widget>[
-            Text(_value),
+            Text("Hello"),
             RaisedButton(
-              onPressed: _event,
+              onPressed: () => _showAlter("uwu"),
               child: Text("Click"),
             ),
           ],
