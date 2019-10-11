@@ -26,12 +26,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  Widget build(BuildContext context) => ListView.separated(
+  Widget build(BuildContext context) => ListView.builder(
         itemCount: 15,
-        itemBuilder: (BuildContext context, int i) => ListTile(
-          title: Text("Op $i"),
+        itemBuilder: (BuildContext context, int i) => Container(
+          margin: EdgeInsets.symmetric(horizontal: 8),
+          child: Text("Op $i"),
         ),
-        separatorBuilder: (BuildContext context, int i) =>
-            Divider(color: Colors.blue),
+        scrollDirection: Axis.horizontal,
       );
 }
