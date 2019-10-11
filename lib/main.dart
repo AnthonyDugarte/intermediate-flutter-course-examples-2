@@ -14,10 +14,7 @@ class BaseApp extends StatelessWidget {
       appBar: AppBar(
         title: Text("My Example App"),
       ),
-      body: Container(
-        padding: EdgeInsets.all(32),
-        child: MyApp(),
-      ),
+      body: MyApp(),
     );
   }
 }
@@ -29,23 +26,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  Widget build(BuildContext context) => Center(
-        child: Column(
-          children: <Widget>[
-            Card(
-              child: Container(
-                padding: EdgeInsets.all(32),
-                child: Column(
-                  children: <Widget>[
-                    Image.network(
-                      "http://pluspng.com/img-png/random-png-image-mabel-s-sweater-creator-random-gnome-png-gravity-falls-wiki-fandom-powered-by-wikia-510.png",
-                    ),
-                    Text("Gnomo"),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
+  Widget build(BuildContext context) => ListView(
+        children: ListTile.divideTiles(
+          context: context,
+          tiles: (Iterable<int>.generate(15).map((int i) => ListTile(
+                title: Text("Op $i"),
+              ))),
+          color: Colors.blue,
+        ).toList(),
       );
 }
